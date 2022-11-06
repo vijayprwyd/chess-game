@@ -10,7 +10,7 @@ const formattedTime = (time: number) => {
   )}:${withLeadingZeros(seconds)}`;
 };
 
-export const Timer = ({ whiteTime, blackTime }: { whiteTime: number; blackTime: number }) => {
+const Timer = ({ whiteTime, blackTime }: { whiteTime: number; blackTime: number }) => {
   return (
     <div className='flex flex-wrap gap-4'>
       <div className='flex gap-4 font-bold text-4xl'>
@@ -26,3 +26,5 @@ export const Timer = ({ whiteTime, blackTime }: { whiteTime: number; blackTime: 
     </div>
   );
 };
+
+export default Timer;

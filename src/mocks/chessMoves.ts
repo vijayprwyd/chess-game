@@ -11,7 +11,6 @@ export const drawByRepetition = [
 
 export const checkMateMoves = [
   ['e2', 'e4', 'wP'],
-  ['e7', 'e7', 'bP'],
   ['f7', 'f5', 'bP'],
   ['d2', 'd4', 'wP'],
   ['g7', 'g5', 'bP'],

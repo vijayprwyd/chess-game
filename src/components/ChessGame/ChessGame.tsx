@@ -4,7 +4,7 @@ import useChessGame from 'hooks/useChessGame';
 
 import Moves from './components/Moves';
 import { Status } from './components/Status/Status';
-import { Timer } from './components/Timer';
+import Timer from './components/Timer';
 
 import Actions from './components/Actions';
 

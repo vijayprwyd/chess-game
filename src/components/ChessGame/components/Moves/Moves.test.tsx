@@ -11,7 +11,7 @@ describe('Moves', () => {
       history: checkMateMoves.flat(),
     });
 
-    expect(screen.getByRole('row', { name: /1 e4 f5/i })).toBeInTheDocument();
+    expect(screen.getByRole('row', { name: /1 e2 e4/i })).toBeInTheDocument();
     expect(screen.getByRole('row', { name: /2 d4 g5/i })).toBeInTheDocument();
     expect(screen.getByRole('row', { name: /3 qh5#/i })).toBeInTheDocument();
   });
