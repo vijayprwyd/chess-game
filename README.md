@@ -2,6 +2,10 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## Project Overview
+
+Refer ([here](https://github.com/vijayprwyd/chess-game/blob/main/Project%20Overview.md))
+
 ## Coding Standards
 
 * Uses `eslint` to enforce code standards.
@@ -16,7 +20,6 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 * Unit testing with `react-testing-library` and `jest`
 
-  
 
 ## Available Scripts
 
