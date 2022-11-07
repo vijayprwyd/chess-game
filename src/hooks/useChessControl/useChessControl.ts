@@ -1,9 +1,10 @@
 import { useRef, useState } from 'react';
-import { Chess } from 'chess.js';
 
 import { getGamePosition, shouldPromote } from './useChessControl.utils';
 
 import { ChessMove, UseChessControlConfig, UseChessControlType } from './types';
+
+import { Chess } from 'chess.js';
 
 // Ref: https://www.npmjs.com/package/chess.js
 const useChessControl = ({ takeBack = false }: UseChessControlConfig): UseChessControlType => {

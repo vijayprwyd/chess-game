@@ -1,12 +1,12 @@
 import Chessboard from 'chessboardjsx';
-import { ChessMove } from 'hooks/useChessControl/types';
-import useChessGame from 'hooks/useChessGame';
 
+import useChessGame from 'hooks/useChessGame';
+import Actions from './components/Actions';
 import Moves from './components/Moves';
 import { Status } from './components/Status/Status';
 import Timer from './components/Timer';
 
-import Actions from './components/Actions';
+import { ChessMove } from 'hooks/useChessControl/types';
 
 const moves: string[][] = [];
 

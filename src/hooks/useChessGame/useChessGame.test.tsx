@@ -1,9 +1,11 @@
-import { renderHook } from '@testing-library/react';
 import { act } from 'react-dom/test-utils';
+import { renderHook } from '@testing-library/react';
+
+import useChessGame from './useChessGame';
+
+import { GameOverReason, Player } from 'types/chess';
 
 import { checkMateMoves, drawByRepetition, invalidMoves } from 'mocks/chessMoves';
-import { GameOverReason, Player } from 'types/chess';
-import useChessGame from './useChessGame';
 
 describe('useChessGame', () => {
   it('should not allow invalid moves', () => {

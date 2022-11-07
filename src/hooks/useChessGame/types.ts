@@ -1,4 +1,5 @@
 import { UseChessActionType } from '../useChessActions/useChessActions';
+
 import { ChessMove, UseChessControlConfig, UseChessControlType } from '../useChessControl/types';
 import { UseChessTimerConfig, UseChessTimerType } from '../useChessTimer/types';
 

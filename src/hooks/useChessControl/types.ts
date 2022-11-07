@@ -1,5 +1,6 @@
-import { Move } from 'chess.js';
 import { GameOverReason, Player } from '../../types/chess';
+
+import { Move } from 'chess.js';
 
 export interface ChessMove {
   sourceSquare: string;

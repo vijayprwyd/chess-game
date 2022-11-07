@@ -1,7 +1,9 @@
 import { render, screen } from '@testing-library/react';
-import { GameOverReason, Player } from 'types/chess';
+
 import { Status } from './Status';
 import { StatusProps } from './Status.types';
+
+import { GameOverReason, Player } from 'types/chess';
 
 const renderLayout = (props: StatusProps) => render(<Status {...props} />);
 

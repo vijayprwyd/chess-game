@@ -1,6 +1,8 @@
-import { Chess } from 'chess.js';
 import { Player } from '../../types/chess';
+
 import { UseChessControlType } from './types';
+
+import { Chess } from 'chess.js';
 
 export const shouldPromote = (targetSquare: string, piece: string) =>
   (targetSquare[1] === '8' && piece[1] === 'P' && piece[0] === 'w') ||

@@ -2,9 +2,9 @@ import useChessActions from 'hooks/useChessActions';
 import useChessControl from 'hooks/useChessControl';
 import useChessTimer from 'hooks/useChessTimer';
 
-import { ChessMove, GameStatus } from 'hooks/useChessControl/types';
 import { GameOverReason, Player } from 'types/chess';
 import { UseChessConfig, UseChessGameType } from './types';
+import { ChessMove, GameStatus } from 'hooks/useChessControl/types';
 
 const getGameOverReason = (
   status: GameStatus,

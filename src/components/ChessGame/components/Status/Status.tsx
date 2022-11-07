@@ -1,5 +1,6 @@
-import { GameOverReason, Player } from 'types/chess';
 import { StatusProps } from './Status.types';
+
+import { GameOverReason, Player } from 'types/chess';
 
 const getGameStatus = (gameOverReason: GameOverReason | undefined, winner?: Player) => {
   switch (gameOverReason) {

@@ -1,7 +1,7 @@
 import Button from 'components/Button';
+import { ActionsProps } from './Actions.types';
 
 import { Player } from 'types/chess';
-import { ActionsProps } from './Actions.types';
 
 const Actions = ({ gameOver, onStartNewGame, draw, resign }: ActionsProps) => {
   return (

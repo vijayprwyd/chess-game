@@ -2,9 +2,9 @@ import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 import Actions from './Actions';
+import { ActionsProps } from './Actions.types';
 
 import { Player } from 'types/chess';
-import { ActionsProps } from './Actions.types';
 
 const renderLayout = (props: ActionsProps) => render(<Actions {...props} />);
 

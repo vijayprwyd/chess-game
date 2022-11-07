@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
 import ChessGame from 'components/ChessGame';
-import StartGameForm from 'components/StartGameForm/StartGameForm';
+import StartGameForm from 'components/StartGameForm';
 
 const Play = () => {
   const [timeLimit, setTimeLimit] = useState<number | undefined>();
