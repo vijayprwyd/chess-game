@@ -1,5 +1,6 @@
 export interface UseChessTimerConfig {
   timeLimit?: number;
+  gameOver?: boolean;
 }
 
 export interface UseChessTimerType {
@@ -8,4 +9,5 @@ export interface UseChessTimerType {
   timeout: boolean;
   startGame: () => void;
   toggleTimer: () => void;
+  updateTimer: () => void;
 }

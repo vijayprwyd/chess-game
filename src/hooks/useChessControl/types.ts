@@ -50,27 +50,18 @@ export interface GameStatus {
   winner?: Player;
 }
 
-export interface UseChessControlType {
+export interface GamePosition {
   /**
    * Current Fen position of the game
    */
   fen: string;
-  /**
-   * Makes a chess move, represented by source square, target square and moved piece
-   */
-  makeMove: (move: ChessMove) => Move | null;
-  /**
-   * Indicates current player
+  /* Indicates current player
    */
   currentPlayer: Player;
   /**
    * Returns true or false if the side to move is in check
    */
   inCheck: boolean;
-  /**
-   * Undo last move
-   */
-  undo: () => void;
   /**
    * Returns chess history
    */
@@ -79,4 +70,23 @@ export interface UseChessControlType {
    * Returns end game info
    */
   finalStatus: GameStatus;
+}
+
+export interface UseChessControlType {
+  /**
+   * Makes a chess move, represented by source square, target square and moved piece
+   */
+  makeMove: (move: ChessMove) => Move | null;
+  /**
+   * gets current chess position and status
+   */
+  getCurrentPosition: () => GamePosition;
+  /**
+   * undo last half move
+   */
+  undo: () => void;
+  /**
+   * Initialize the game with a history of moves
+   */
+  initializeGame: (moves: string[]) => void;
 }

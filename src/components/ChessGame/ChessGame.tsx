@@ -8,8 +8,6 @@ import Timer from './components/Timer';
 
 import { ChessMove } from 'hooks/useChessControl/types';
 
-const moves: string[][] = [];
-
 // https://chessboardjsx.com/
 // https://github.com/willb335/chessboardjsx/issues/71
 const ChessGame = ({
@@ -29,37 +27,59 @@ const ChessGame = ({
     blackTime,
     resign,
     draw,
+    undo,
+    displayNthMove,
+    gameTimeLimit,
   } = useChessGame({
     timeLimit,
   });
 
   const handleDrop = (move: ChessMove) => {
     makeChessMove(move);
-    moves.push([move.sourceSquare, move.targetSquare, move.piece]);
+  };
+
+  const handleMoveClick = (move: number) => displayNthMove(move);
+
+  const handleCalcWidth = ({
+    screenWidth,
+    screenHeight,
+  }: {
+    screenWidth: number;
+    screenHeight: number;
+  }) => {
+    const minDimension = Math.min(screenWidth, screenHeight);
+    return Math.min(560, minDimension - 16);
   };
 
   return (
-    <div className='relative flex flex-wrap gap-8 m-4'>
+    <div className='relative flex flex-wrap gap-8 m-4 justify-center'>
       <div className='self-center'>
-        <Chessboard orientation='white' position={fen} onDrop={handleDrop} />
+        <Chessboard
+          orientation='white'
+          position={fen}
+          onDrop={handleDrop}
+          calcWidth={handleCalcWidth}
+        />
       </div>
 
-      <div className='flex flex-col gap-4 w-[600px] h-[560px] justify-center'>
+      <div className='flex flex-col gap-4 max-w-[600px] h-[560px] justify-center'>
         <div className='flex flex-col gap-4 gap-4 justify-center'>
-          {!!timeLimit && <Timer whiteTime={whiteTime} blackTime={blackTime} />}
+          {!!gameTimeLimit && <Timer whiteTime={whiteTime} blackTime={blackTime} />}
 
           <Actions
             gameOver={finalStatus.gameOver}
             onStartNewGame={onStartNewGame}
             draw={draw}
             resign={resign}
+            undo={undo}
+            currentMoveIndex={history.length}
           />
         </div>
 
         <Status color={currentPlayer} status={finalStatus} winner={finalStatus.winner} />
 
         <div className='flex-grow'>
-          <Moves history={history} />
+          <Moves history={history} onMoveClick={handleMoveClick} />
         </div>
       </div>
     </div>

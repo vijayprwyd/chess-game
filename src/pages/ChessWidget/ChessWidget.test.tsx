@@ -1,9 +1,9 @@
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
-import Play from './Play';
+import ChessWidget from './ChessWidget';
 
-const renderLayout = () => render(<Play />);
+const renderLayout = () => render(<ChessWidget />);
 
 describe('Play', () => {
   it('should render start game form', () => {

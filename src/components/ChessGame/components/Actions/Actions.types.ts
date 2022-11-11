@@ -5,4 +5,6 @@ export interface ActionsProps {
   draw: () => void;
   resign: (player: Player) => void;
   onStartNewGame: () => void;
+  undo: () => void;
+  currentMoveIndex: number;
 }

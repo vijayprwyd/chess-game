@@ -1,6 +1,6 @@
 import { Player } from '../../types/chess';
 
-import { UseChessControlType } from './types';
+import { GamePosition } from './types';
 
 import { Chess } from 'chess.js';
 
@@ -8,7 +8,7 @@ export const shouldPromote = (targetSquare: string, piece: string) =>
   (targetSquare[1] === '8' && piece[1] === 'P' && piece[0] === 'w') ||
   (targetSquare[1] === '1' && piece[1] === 'P' && piece[0] === 'b');
 
-export const getGamePosition = (chess: Chess): Omit<UseChessControlType, 'makeMove' | 'undo'> => {
+export const getGamePosition = (chess: Chess): GamePosition => {
   const gameOver = chess.isGameOver();
   const currentPlayer = chess.turn() === 'b' ? Player.Black : Player.White;
   const nextPlayer = currentPlayer === Player.Black ? Player.White : Player.Black;

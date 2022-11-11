@@ -1,6 +1,6 @@
 import { UseChessActionType } from '../useChessActions/useChessActions';
 
-import { ChessMove, UseChessControlConfig, UseChessControlType } from '../useChessControl/types';
+import { ChessMove, GamePosition, UseChessControlConfig } from '../useChessControl/types';
 import { UseChessTimerConfig, UseChessTimerType } from '../useChessTimer/types';
 
 export interface UseChessConfig {
@@ -9,8 +9,11 @@ export interface UseChessConfig {
 }
 
 export interface UseChessGameType
-  extends Omit<UseChessControlType, 'makeMove'>,
-    Omit<UseChessTimerType, 'startGame'>,
+  extends GamePosition,
+    Omit<UseChessTimerType, 'startGame' | 'updateTimer'>,
     UseChessActionType {
   makeChessMove: (move: ChessMove) => void;
+  displayNthMove: (n: number) => void;
+  undo: () => void;
+  gameTimeLimit: number | undefined;
 }

@@ -1,19 +1,16 @@
-import { useRef, useState } from 'react';
+import { useRef } from 'react';
 
 import { getGamePosition, shouldPromote } from './useChessControl.utils';
 
-import { ChessMove, UseChessControlConfig, UseChessControlType } from './types';
+import { ChessMove, UseChessControlType } from './types';
 
 import { Chess } from 'chess.js';
 
 // Ref: https://www.npmjs.com/package/chess.js
-const useChessControl = ({ takeBack = false }: UseChessControlConfig): UseChessControlType => {
+const useChessControl = (): UseChessControlType => {
   const gameRef = useRef(new Chess());
-  const [gamePosition, setGamePosition] = useState(() => getGamePosition(gameRef.current));
 
   const makeMove = ({ sourceSquare, targetSquare, piece }: ChessMove) => {
-    if (gamePosition.finalStatus.gameOver) return null;
-
     // see if the  move is legal
     const move = gameRef.current.move({
       from: sourceSquare,
@@ -22,18 +19,20 @@ const useChessControl = ({ takeBack = false }: UseChessControlConfig): UseChessC
       promotion: shouldPromote(targetSquare, piece) ? 'q' : undefined,
     });
 
-    if (move) {
-      setGamePosition(() => getGamePosition(gameRef.current));
-    }
     return move;
   };
 
-  const undo = () => {
-    if (!takeBack) return;
-    return gameRef.current.undo();
+  const initializeGame = (chessMoves: string[]) => {
+    chessMoves.forEach((chessMove) => {
+      gameRef.current.move(chessMove);
+    });
   };
 
-  return { ...gamePosition, makeMove, undo };
+  const undo = () => gameRef.current.undo();
+
+  const getCurrentPosition = () => getGamePosition(gameRef.current);
+
+  return { getCurrentPosition, makeMove, undo, initializeGame };
 };
 
 export default useChessControl;

@@ -2,9 +2,10 @@ import { useEffect, useState } from 'react';
 
 import { UseChessTimerConfig } from './types';
 
-const useChessTimer = ({ timeLimit }: UseChessTimerConfig) => {
+const useChessTimer = ({ timeLimit, gameOver }: UseChessTimerConfig) => {
   const [whiteTime, setWhiteTime] = useState(timeLimit ?? 0);
   const [blackTime, setBlackTime] = useState(timeLimit ?? 0);
+  const [hasTime, setHasTime] = useState(!!timeLimit);
 
   const [currentPlayer, setCurrentPlayer] = useState<'white' | 'black'>('white');
   const [playing, setPlaying] = useState(true);
@@ -24,9 +25,16 @@ const useChessTimer = ({ timeLimit }: UseChessTimerConfig) => {
     return () => clearInterval(intervalId);
   }, [playing, currentPlayer]);
 
-  const startTimer = () => {
-    if (!timeLimit) return;
+  const startTimer = (
+    whiteTime: number,
+    blackTime: number,
+    currentPlayerFromProps: 'black' | 'white'
+  ) => {
     setPlaying(true);
+    setWhiteTime(whiteTime);
+    setBlackTime(blackTime);
+    setCurrentPlayer(currentPlayerFromProps);
+    setHasTime(true);
   };
 
   const toggleTimer = () => {
@@ -35,16 +43,31 @@ const useChessTimer = ({ timeLimit }: UseChessTimerConfig) => {
     setPlaying(true);
   };
 
+  const updateTimer = ({
+    whiteTime,
+    blackTime,
+    currentPlayer,
+  }: {
+    whiteTime: number;
+    blackTime: number;
+    currentPlayer: 'white' | 'black';
+  }) => {
+    setWhiteTime(whiteTime);
+    setBlackTime(blackTime);
+    setCurrentPlayer(currentPlayer);
+  };
+
   useEffect(() => {
-    if (!whiteTime || !blackTime) setPlaying(false);
-  }, [whiteTime, blackTime]);
+    if (!whiteTime || !blackTime || gameOver) setPlaying(false);
+  }, [whiteTime, blackTime, gameOver]);
 
   return {
     whiteTime,
     blackTime,
-    timeout: !!timeLimit && (whiteTime <= 0 || blackTime <= 0),
+    timeout: !!hasTime && (whiteTime <= 0 || blackTime <= 0),
     startTimer,
     toggleTimer,
+    updateTimer,
   };
 };
 

@@ -17,6 +17,8 @@ describe('Actions', () => {
       onStartNewGame: mockCallback,
       draw: jest.fn(),
       resign: jest.fn(),
+      undo: jest.fn(),
+      currentMoveIndex: 2,
     });
 
     await userEvent.click(screen.getByRole('button', { name: /new game/i }));
@@ -31,6 +33,8 @@ describe('Actions', () => {
       onStartNewGame: jest.fn(),
       draw: mockCallback,
       resign: jest.fn(),
+      undo: jest.fn(),
+      currentMoveIndex: 2,
     });
 
     await userEvent.click(screen.getByRole('button', { name: /draw/i }));
@@ -45,6 +49,8 @@ describe('Actions', () => {
       onStartNewGame: jest.fn(),
       draw: jest.fn(),
       resign: mockCallback,
+      undo: jest.fn(),
+      currentMoveIndex: 2,
     });
 
     await userEvent.click(screen.getByRole('button', { name: /white resign/i }));
@@ -59,6 +65,8 @@ describe('Actions', () => {
       onStartNewGame: jest.fn(),
       draw: jest.fn(),
       resign: mockCallback,
+      undo: jest.fn(),
+      currentMoveIndex: 2,
     });
 
     await userEvent.click(screen.getByRole('button', { name: /black resign/i }));
