@@ -12,16 +12,16 @@ const formattedTime = (time: number) => {
 
 const Timer = ({ whiteTime, blackTime }: { whiteTime: number; blackTime: number }) => {
   return (
-    <div className='flex flex-wrap gap-4'>
+    <div className='flex flex-wrap gap-4 items-center'>
       <div className='flex gap-4 font-bold text-4xl'>
         <div className='self-center'>White:</div>
-        <div className='text-6xl'>{formattedTime(whiteTime)}</div>
+        <div className='text-4xl lg:text-6xl'>{formattedTime(whiteTime)}</div>
       </div>
 
       <div className='flex gap-4 font-bold text-4xl'>
         <div className='self-center'>Black:</div>
 
-        <div className='text-6xl'>{formattedTime(blackTime)}</div>
+        <div className='text-4xl lg:text-6xl'>{formattedTime(blackTime)}</div>
       </div>
     </div>
   );
