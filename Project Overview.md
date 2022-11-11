@@ -36,4 +36,5 @@ Logic is controlled by hooks.
 * Hooks are not concerned about how UI is rendered and just manages the state. Each hook understand only the functionality it provides and must not have tight coupling with other hooks.
 
 
-![image](https://user-images.githubusercontent.com/57066740/200226412-37367c0a-fa62-4ea7-bb5c-53c4ee153894.png)
+![image](https://user-images.githubusercontent.com/57066740/201412772-212a464a-26fd-46db-8de4-8b3be1e41872.png)
+

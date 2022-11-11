@@ -4,7 +4,12 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## Project Overview
 
-Refer ([here](https://github.com/vijayprwyd/chess-game/blob/main/Project%20Overview.md))
+Refer [here](https://github.com/vijayprwyd/chess-game/blob/main/Project%20Overview.md)
+
+## Running the Application
+
+* Run `npm install`
+* Run `npm start` to start in `dev` mode and navigate to `http://localhost:3000/`
 
 ## Coding Standards
 
