@@ -8,68 +8,75 @@ import { Player } from 'types/chess';
 
 const renderLayout = (props: ActionsProps) => render(<Actions {...props} />);
 
+const defaultProps = {
+  gameOver: true,
+  onStartNewGame: jest.fn(),
+  draw: jest.fn(),
+  resign: jest.fn(),
+  undo: jest.fn(),
+  currentMoveIndex: 2,
+};
+
 describe('Actions', () => {
   it('should render new game button and invoke start new game', async () => {
-    const mockCallback = jest.fn();
-
-    renderLayout({
-      gameOver: true,
-      onStartNewGame: mockCallback,
-      draw: jest.fn(),
-      resign: jest.fn(),
-      undo: jest.fn(),
-      currentMoveIndex: 2,
-    });
+    renderLayout(defaultProps);
 
     await userEvent.click(screen.getByRole('button', { name: /new game/i }));
-    expect(mockCallback).toBeCalledTimes(1);
+    expect(defaultProps.onStartNewGame).toBeCalledTimes(1);
   });
 
   it('should invoke draw when clicked', async () => {
-    const mockCallback = jest.fn();
-
     renderLayout({
+      ...defaultProps,
       gameOver: false,
-      onStartNewGame: jest.fn(),
-      draw: mockCallback,
-      resign: jest.fn(),
-      undo: jest.fn(),
-      currentMoveIndex: 2,
     });
 
     await userEvent.click(screen.getByRole('button', { name: /draw/i }));
-    expect(mockCallback).toBeCalledTimes(1);
+    expect(defaultProps.draw).toBeCalledTimes(1);
   });
 
   it('should allow white to resign', async () => {
-    const mockCallback = jest.fn();
-
     renderLayout({
+      ...defaultProps,
       gameOver: false,
-      onStartNewGame: jest.fn(),
-      draw: jest.fn(),
-      resign: mockCallback,
-      undo: jest.fn(),
-      currentMoveIndex: 2,
     });
 
     await userEvent.click(screen.getByRole('button', { name: /white resign/i }));
-    expect(mockCallback).toBeCalledWith(Player.White);
+    expect(defaultProps.resign).toBeCalledWith(Player.White);
   });
 
   it('should allow black to resign', async () => {
-    const mockCallback = jest.fn();
-
     renderLayout({
+      ...defaultProps,
       gameOver: false,
-      onStartNewGame: jest.fn(),
-      draw: jest.fn(),
-      resign: mockCallback,
-      undo: jest.fn(),
-      currentMoveIndex: 2,
     });
 
     await userEvent.click(screen.getByRole('button', { name: /black resign/i }));
-    expect(mockCallback).toBeCalledWith(Player.Black);
+    expect(defaultProps.resign).toBeCalledWith(Player.Black);
+  });
+
+  it('should invoke undo', async () => {
+    renderLayout({
+      ...defaultProps,
+      gameOver: false,
+      currentMoveIndex: 2,
+    });
+
+    await userEvent.click(screen.getByRole('button', { name: /undo/i }));
+    expect(defaultProps.undo).toBeCalledTimes(1);
+  });
+
+  it('should disable undo when no moves are made', async () => {
+    renderLayout({
+      ...defaultProps,
+      gameOver: false,
+      currentMoveIndex: 0,
+    });
+
+    const undoButton = screen.getByRole('button', { name: /undo/i });
+    expect(undoButton).toBeDisabled();
+
+    await userEvent.click(undoButton);
+    expect(defaultProps.undo).toBeCalledTimes(0);
   });
 });

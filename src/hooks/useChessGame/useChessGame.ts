@@ -101,14 +101,14 @@ const useChessGame = ({ timeLimit: timeLimitFromForm }: UseChessConfig): UseChes
     }
   };
 
-  const undo = () => {
-    undoMove();
+  const undo = (moves = 1) => {
+    for (let i = 0; i < moves; i++) {
+      undoMove();
+      undoMoveInHistory();
+    }
 
-    undoMoveInHistory();
     const lastMove = getLastMove();
-
     const newPosition = getCurrentPosition();
-
     setCurrentPosition(newPosition);
 
     if (timeLimit && lastMove)
@@ -123,6 +123,7 @@ const useChessGame = ({ timeLimit: timeLimitFromForm }: UseChessConfig): UseChes
     if (timeout || drawn || resignedPlayer) return;
 
     const newMove = makeMove(move);
+
     if (newMove) {
       const newPosition = getCurrentPosition();
 

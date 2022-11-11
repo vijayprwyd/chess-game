@@ -21,7 +21,7 @@ const getHistoryFromLocalStorage = () => {
       return JSON.parse(currentHistoryString) as GameMoveStorage[];
     }
   } catch (error) {
-    console.log(error);
+    // Report error
   }
   return undefined;
 };

@@ -1,4 +1,4 @@
 export interface MovesProps {
   history: string[];
-  onMoveClick: (move: number) => void;
+  onMoveClick: (move: number, undoMove?: boolean) => void;
 }

@@ -25,6 +25,7 @@ Logic is controlled by hooks.
   * `useChessGame` - Controls overall game logic, integrates with timer, control , actions and with hooks created for any new functionality. `ChessWidget` should interact only with this `hook` and shouldn't be concerned / refer to its internal implementation
   * `useChessControl` - Controls game state and provides functionalities like move, stores current position
   * `useChessTimer` - Provides timer related functionality for timed chess games
+  * `useGameHistory` - Maintains game history, stores the state and timer related info etc...
   * `useChessEngine` - Hook which could integrate an engine like `Stockfish` for `Computer vs Human`
   * `useVoteChess` - Chess game which could make moves based on a multiplayer voting system 
 

@@ -38,7 +38,12 @@ const ChessGame = ({
     makeChessMove(move);
   };
 
-  const handleMoveClick = (move: number) => displayNthMove(move);
+  const handleMoveClick = (move: number, undoMove?: boolean) => {
+    displayNthMove(move);
+    if (undoMove) {
+      undo(history.length - move);
+    }
+  };
 
   const handleCalcWidth = ({
     screenWidth,
@@ -48,12 +53,12 @@ const ChessGame = ({
     screenHeight: number;
   }) => {
     const minDimension = Math.min(screenWidth, screenHeight);
-    return Math.min(560, minDimension - 16);
+    return Math.min(560, minDimension - 48);
   };
 
   return (
     <div className='relative flex flex-wrap gap-8 m-4 justify-center'>
-      <div className='self-center'>
+      <div className='self-start'>
         <Chessboard
           orientation='white'
           position={fen}

@@ -14,6 +14,6 @@ export interface UseChessGameType
     UseChessActionType {
   makeChessMove: (move: ChessMove) => void;
   displayNthMove: (n: number) => void;
-  undo: () => void;
+  undo: (move?: number) => void;
   gameTimeLimit: number | undefined;
 }

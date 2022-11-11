@@ -22,3 +22,16 @@ export const invalidMoves = [
   ['e7', 'e5', 'bP'],
   ['g1', 'f4', 'wN'],
 ];
+
+export const randomMoves = [
+  ['d2', 'd4', 'wP'],
+  ['d7', 'd5', 'bP'],
+  ['g1', 'f3', 'wN'],
+  ['g8', 'f6', 'bN'],
+  ['a2', 'a3', 'wP'],
+  ['c7', 'c6', 'bP'],
+  ['g2', 'g3', 'wP'],
+  ['g7', 'g6', 'bP'],
+  ['b2', 'b4', 'wP'],
+  ['e7', 'e6', 'bP'],
+];

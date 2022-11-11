@@ -20,10 +20,11 @@ const formattedMoves = (moves: string[]) => {
 
 const Moves = ({ history, onMoveClick }: MovesProps) => {
   const [currentMove, setCurrentMove] = useState(0);
+  const [undoMove, setUndoMove] = useState(false);
 
   const handleNavigateClick = (moveNo: number) => {
     setCurrentMove(moveNo);
-    onMoveClick(moveNo);
+    onMoveClick(moveNo, undoMove);
   };
 
   const moves = formattedMoves(history);
@@ -35,9 +36,21 @@ const Moves = ({ history, onMoveClick }: MovesProps) => {
   return (
     <div className='flex flex-col gap-4 flex-grow max-w-full'>
       <p>
-        Click on a move to view the state. Click will not undo the move. To undo / takeback the
-        move, press undo button.
+        Click on a move to view the state. If undo box is checked it undo the move, resetting game
+        progress. To undo / takeback the move, press undo button.
       </p>
+      <div className='form-check'>
+        <input
+          className='h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer'
+          type='checkbox'
+          id='undoMoves'
+          onChange={(evt) => setUndoMove(evt.target.checked)}
+          checked={undoMove}
+        />
+        <label className='form-check-label inline-block text-gray-800' htmlFor='undoMoves'>
+          Move back with undo
+        </label>
+      </div>
 
       <div className='max-h-[344px] overflow-auto' role='table'>
         {moves.map((move, index) => (
